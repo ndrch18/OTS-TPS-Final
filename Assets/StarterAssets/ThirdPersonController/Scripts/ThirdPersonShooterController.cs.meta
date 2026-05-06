@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 4eca0d98f1fc75d45af8618843232328
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - aimCamera: {instanceID: 0}
+  - debugTransform: {instanceID: 0}
+  - pfBulletProjectile: {fileID: 6863857337172796870, guid: 9fc5deab5fef94d41b92a7112049f302, type: 3}
+  - spawnBulletPosition: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
