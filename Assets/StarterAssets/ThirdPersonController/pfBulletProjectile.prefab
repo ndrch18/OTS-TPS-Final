@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6863857337172796870}
   - component: {fileID: 6863857337172796864}
   - component: {fileID: 6863857337172796871}
+  - component: {fileID: 3434597547699669011}
   m_Layer: 0
   m_Name: pfBulletProjectile
   m_TagString: Untagged
@@ -82,6 +83,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3434597547699669011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6863857337172796869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf1fe43d35e3b84a93cd6ad119bf78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletProjectile
+  vfxHitGreen: {fileID: 613433886817584985, guid: 6e845b0e80fad2d4c93ff505a0750129, type: 3}
+  vfxHitRed: {fileID: 613433886817584985, guid: 9f5fbcfb6299c2b4c912f3ff44f14463, type: 3}
 --- !u!1 &6863857337905034704
 GameObject:
   m_ObjectHideFlags: 0
