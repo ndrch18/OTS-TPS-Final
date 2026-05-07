@@ -17,17 +17,21 @@ public class BulletProjectile : MonoBehaviour
         bulletRigidbody.linearVelocity = transform.forward * speed;
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.GetComponent<BulletTarget>() != null)
+    private void OnTriggerEnter(Collider other)
+{
+    if (other.GetComponent<BulletTarget>() != null)
+    {
+        Instantiate(vfxHitGreen, transform.position, Quaternion.identity);
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy != null)
         {
-            // hit target
-            Instantiate(vfxHitGreen, transform.position, Quaternion.identity);
+            enemy.TakeDamage();
         }
-        else
-        {
-            // hit something else
-            Instantiate(vfxHitRed, transform.position, Quaternion.identity);
-        }
-        Destroy(gameObject);
     }
+    else
+    {
+        Instantiate(vfxHitRed, transform.position, Quaternion.identity);
+    }
+    Destroy(gameObject);
+}
 }

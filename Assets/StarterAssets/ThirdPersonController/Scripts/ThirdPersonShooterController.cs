@@ -60,17 +60,21 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         if (starterAssetsInputs.shoot) {
             //if (hitTransform != null)
-            //{
+           // {
                 // hit something
                 //if (hitTransform.GetComponent<BulletTarget>() != null)
                 //{
-                     // hit target
                     //Instantiate(vfxHitGreen, mouseWorldPosition, Quaternion.identity);
+                    //Enemy enemy = hitTransform.GetComponent<Enemy>();
+                    //if (enemy != null)
+                    //{
+                        //enemy.TakeDamage();
+                    //}
                 //}
                 //else
-                //{
+               // {
                      // hit something else
-                    //Instantiate(vfxHitRed, mouseWorldPosition, Quaternion.identity);
+                   // Instantiate(vfxHitRed, mouseWorldPosition, Quaternion.identity);
                 //}
             //}
             UnityEngine.Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
