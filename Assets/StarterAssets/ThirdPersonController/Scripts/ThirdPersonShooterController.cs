@@ -27,58 +27,62 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private void Update()
     {
-        UnityEngine.Vector3 mouseWorldPosition = UnityEngine.Vector3.zero;
-
-        UnityEngine.Vector2 screenCenterPoint = new UnityEngine.Vector2(Screen.width / 2f, Screen.height / 2f);
+    
+        Vector3 mouseWorldPosition = Vector3.zero;
+        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        Transform hitTransform = null;
+        
+    
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask)) {
             debugTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
-            hitTransform = raycastHit.transform;
+        } else {
+        
+            mouseWorldPosition = ray.GetPoint(999f);
         }
+
+    
+    
+        Vector3 cameraForward = Camera.main.transform.forward;
+        cameraForward.y = 0; 
+        cameraForward.Normalize();
+
         if (starterAssetsInputs.aim)
         {
             aimCamera.gameObject.SetActive(true);
             thirdPersonController.SetSensitivity(aimSensitivity);
-            thirdPersonController.SetRotateOnMove(false);
-            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
+            
+        
+            thirdPersonController.SetRotateOnMove(false); 
+            
+        
+            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 20f));
 
-            UnityEngine.Vector3 worldAimTarget = mouseWorldPosition;
-            worldAimTarget.y = transform.position.y;
-            UnityEngine.Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
-
-            transform.forward = UnityEngine.Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+        
+            transform.forward = cameraForward;
         }
         else
         {
             aimCamera.gameObject.SetActive(false);
             thirdPersonController.SetSensitivity(normalSensitivity);
-            thirdPersonController.SetRotateOnMove(true);
-            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
+
+        
+        
+            thirdPersonController.SetRotateOnMove(false); 
+            transform.forward = cameraForward;
+
+            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 20f));
         }
 
+    
         if (starterAssetsInputs.shoot) {
-            //if (hitTransform != null)
-           // {
-                // hit something
-                //if (hitTransform.GetComponent<BulletTarget>() != null)
-                //{
-                    //Instantiate(vfxHitGreen, mouseWorldPosition, Quaternion.identity);
-                    //Enemy enemy = hitTransform.GetComponent<Enemy>();
-                    //if (enemy != null)
-                    //{
-                        //enemy.TakeDamage();
-                    //}
-                //}
-                //else
-               // {
-                     // hit something else
-                   // Instantiate(vfxHitRed, mouseWorldPosition, Quaternion.identity);
-                //}
-            //}
-            UnityEngine.Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
-            Instantiate(pfBulletProjectile, spawnBulletPosition.position, UnityEngine.Quaternion.LookRotation(aimDir, UnityEngine.Vector3.up));
+        
+            Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+            
+        
+            Instantiate(pfBulletProjectile, spawnBulletPosition.position, 
+            Quaternion.LookRotation(aimDir, Vector3.up));
+            
             starterAssetsInputs.shoot = false;
         }
     }
